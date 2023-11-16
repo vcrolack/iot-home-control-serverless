@@ -15,9 +15,26 @@ functions:
       - http:
           path: pantries
           method: GET
+  get-pantries-by-id:
+    handler: src/lambdas/pantries/getPantriesById/handler.getPantriesById
+    events:
+      - http:
+          path: pantries/{id}
+          method: GET
+          request:
+            parameters:
+              paths:
+                id: true
   create-pantries:
     handler: src/lambdas/pantries/createPantries/handler.createPantries
     events:
       - http:
           path: pantries
           method: POST
+  update-pantries:
+    handler: src/lambdas/pantries/updatePantries/handler.updatePantries
+    events:
+      - http:
+          path: pantries/{id}
+          method: PATCH
+          
