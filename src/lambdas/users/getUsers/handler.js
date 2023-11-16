@@ -8,7 +8,7 @@ const getUsers = async (event, context) => {
 
     return {
       statusCode: 200,
-      body: JSON.stringify(result.rows)
+      body: JSON.stringify(result)
     }
 
   } catch (error) {
