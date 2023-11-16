@@ -5,12 +5,17 @@ module.exports = {
   target: 'node',
   mode: 'production',
   entry: {
+    // PANTRIES
     'getPantries': './src/lambdas/pantries/getPantries/index.js',
     'createPantries': './src/lambdas/pantries/createPantries/index.js',
     'deletePantries': './src/lambdas/pantries/deletePantries/index.js',
     'updatePantries': './src/lambdas/pantries/updatePantries/index.js',
     'getPantriesById': './src/lambdas/pantries/getPantriesById/index.js',
+
+    // USERS
     'getUsers': './src/lambdas/users/getUsers/index.js',
+    'getUsersById': './src/lambdas/users/getUsersById/index.js',
+    
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

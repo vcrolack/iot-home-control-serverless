@@ -50,4 +50,14 @@ functions:
       - http:
           path: users
           method: GET
+  get-users-by-id:
+    handler: dist/getUsersById.getUsersById
+    events:
+      - http:
+          path: users/{id}
+          method: GET
+          request:
+            parameters:
+              paths:
+                id: true
           
