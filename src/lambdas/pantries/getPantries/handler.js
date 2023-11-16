@@ -18,5 +18,5 @@ const getPantries = async (event, context) => {
 };
 
 module.exports = {
-  getPantries: getPantries,
+  getPantries,
 };
