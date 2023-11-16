@@ -1,13 +1,17 @@
-service: hola-mundo
+service: iot-home-control
 
 provider:
   name: aws
   runtime: nodejs14.x
+  region: us-east-2
+
+plugins:
+  - serverless-offline
 
 functions:
-  hello-world:
-    handler: handler.hello
+  get-pantries:
+    handler: src/lambdas/pantries/getPantries/handler.getPantries
     events:
       - http:
-          path: hello
+          path: pantries
           method: GET

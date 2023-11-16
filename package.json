@@ -1,5 +1,5 @@
 {
-  "name": "hola-mundo",
+  "name": "iot-home-control",
   "version": "1.0.0",
   "description": "",
   "main": "handler.js",
@@ -9,6 +9,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "serverless": "^3.21.0"
+    "serverless": "^3.21.0",
+    "serverless-offline": "^13.2.1"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1497.0",
+    "dotenv": "^16.3.1",
+    "pg": "^8.11.3"
   }
 }
