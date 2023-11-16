@@ -14,7 +14,7 @@ const UPDATE_PANTRY = `  UPDATE "Despensa"
                               "PropietarioID" = $6
                           WHERE "ID" = $7`;
                           
-const DELETE_PANTRY = 'DELETE FROM "Despensa" WHERE id = $1';
+const DELETE_PANTRY = `DELETE FROM "Despensa" WHERE "ID" = $1`;
 
 module.exports = {
   GET_PANTRIES,
