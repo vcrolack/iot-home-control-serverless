@@ -10,13 +10,13 @@ plugins:
 
 functions:
   get-pantries:
-    handler: src/lambdas/pantries/getPantries/handler.getPantries
+    handler: dist/getPantries.getPantries
     events:
       - http:
           path: pantries
           method: GET
   get-pantries-by-id:
-    handler: src/lambdas/pantries/getPantriesById/handler.getPantriesById
+    handler: dist/getPantriesById.getPantriesById
     events:
       - http:
           path: pantries/{id}
@@ -26,26 +26,26 @@ functions:
               paths:
                 id: true
   create-pantries:
-    handler: src/lambdas/pantries/createPantries/handler.createPantries
+    handler: dist/createPantries.createPantries
     events:
       - http:
           path: pantries
           method: POST
   update-pantries:
-    handler: src/lambdas/pantries/updatePantries/handler.updatePantries
+    handler: dist/updatePantries.updatePantries
     events:
       - http:
           path: pantries/{id}
           method: PATCH
   delete-pantries:
-    handler: src/lambdas/pantries/deletePantries/handler.deletePantries
+    handler: dist/deletePantries.deletePantries
     events:
       - http:
           path: pantries/{id}
           method: DELETE
   
   get-users:
-    handler: src/lambdas/users/getUsers/handler.getUsers
+    handler: dist/getUsers.getUsers
     events:
       - http:
           path: users
