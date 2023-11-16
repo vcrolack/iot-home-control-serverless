@@ -43,4 +43,11 @@ functions:
       - http:
           path: pantries/{id}
           method: DELETE
+  
+  get-users:
+    handler: src/lambdas/users/getUsers/handler.getUsers
+    events:
+      - http:
+          path: users
+          method: GET
           
