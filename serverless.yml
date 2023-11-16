@@ -37,4 +37,10 @@ functions:
       - http:
           path: pantries/{id}
           method: PATCH
+  delete-pantries:
+    handler: src/lambdas/pantries/deletePantries/handler.deletePantries
+    events:
+      - http:
+          path: pantries/{id}
+          method: DELETE
           
