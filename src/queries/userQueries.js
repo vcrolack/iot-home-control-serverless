@@ -1,6 +1,6 @@
 const GET_USERS = `SELECT * FROM "Usuarios"`;
 
-const GET_USER_BY_ID = '';
+const GET_USER_BY_ID = `SELECT * FROM "Usuarios" WHERE "ID" = $1`;
 
 const CREATE_USER = '';
 
