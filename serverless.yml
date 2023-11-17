@@ -66,4 +66,10 @@ functions:
       - http:
           path: users/{id}
           method: PATCH
+  delete-users:
+    handler: dist/deleteUsers.deleteUsers
+    events:
+      - http:
+          path: users/{id}
+          method: DELETE
           

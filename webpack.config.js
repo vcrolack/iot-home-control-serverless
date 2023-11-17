@@ -16,6 +16,7 @@ module.exports = {
     'getUsers': './src/lambdas/users/getUsers/index.js',
     'getUsersById': './src/lambdas/users/getUsersById/index.js',
     'updateUsers': './src/lambdas/users/updateUsers/index.js',
+    'deleteUsers': './src/lambdas/users/deleteUsers/index.js',
     
   },
   output: {
