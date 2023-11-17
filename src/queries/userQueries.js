@@ -3,6 +3,8 @@ const GET_USERS = `SELECT * FROM "Usuarios"`;
 const GET_USER_BY_ID = `SELECT * FROM "Usuarios" WHERE "ID" = $1`;
 
 const CREATE_USER = `
+  INSERT INTO "Usuarios" ("NombreUsuario", "CorreoElectronico", "Ubicacion", "Contrasena", "ConfiguracionNotificacion", "CognitoUserId") 
+  VALUES ($1, $2, $3, $4, $5, $6)
 `;
 
 const UPDATE_USER = `

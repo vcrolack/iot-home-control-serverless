@@ -72,4 +72,10 @@ functions:
       - http:
           path: users/{id}
           method: DELETE
+  register:
+    handler: dist/register.register
+    events:
+      - http:
+          path: auth/register
+          method: POST
           
