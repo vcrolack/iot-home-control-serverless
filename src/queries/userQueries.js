@@ -14,7 +14,7 @@ const UPDATE_USER = `
   WHERE "ID" = $6
 `;
 
-const DELETE_USER = '';
+const DELETE_USER = 'DELETE FROM "Usuarios" WHERE "ID" = $1';
 
 module.exports = {
   GET_USERS,
