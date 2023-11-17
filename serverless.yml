@@ -60,4 +60,10 @@ functions:
             parameters:
               paths:
                 id: true
+  update-users:
+    handler: dist/updateUsers.updateUsers
+    events:
+      - http:
+          path: users/{id}
+          method: PATCH
           
