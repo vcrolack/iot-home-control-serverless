@@ -78,4 +78,10 @@ functions:
       - http:
           path: auth/register
           method: POST
+  login:
+    handler: dist/login.login
+    events:
+      - http:
+          path: auth/login
+          method: POST
           
