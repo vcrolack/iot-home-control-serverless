@@ -21,6 +21,7 @@ module.exports = {
     // AUTH
     'register': './src/lambdas/auth/register/index.js',
     'login': './src/lambdas/auth/login/index.js',
+    'confirmSignUp': './src/lambdas/auth/confirmSignUp/index.js',
     
   },
   output: {

@@ -8,8 +8,10 @@ const cognito = new AWS.CognitoIdentityServiceProvider();
 const login = async (event, context) => {
   const loginBody = JSON.parse(event.body);
 
+  console.log('esto es el body: ' + JSON.stringify(loginBody))
+
   const errorData = loginValidator(loginBody);
-  if (errorData.length > 0) return errorHandler(errorData);
+  if (errorData.length > 0) return errorHandler({statusCode: 400, message: errorData});
 
   const params = {
     AuthFlow: 'USER_PASSWORD_AUTH',
@@ -20,15 +22,25 @@ const login = async (event, context) => {
     }
   };
 
+  console.log('esto es el params: ' + JSON.stringify(params));
+
   try {
     const authResult = await cognito.initiateAuth(params).promise();
 
-    return {
+    console.log(authResult);
+
+    const response = {
       idToken: authResult.AuthenticationResult.IdToken,
       accessToken: authResult.AuthenticationResult.AccessToken,
+    }
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify(response),
     };
 
   } catch (error) {
+    console.log(error)
     return errorHandler(error);
   }
 };

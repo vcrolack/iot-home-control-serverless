@@ -169,5 +169,6 @@ const loginValidator = (data) => {
 module.exports = { 
   pantryValidator,
   userValidator,
-  loginValidator
+  loginValidator,
+  validateEmail,
 };
