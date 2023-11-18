@@ -84,4 +84,10 @@ functions:
       - http:
           path: auth/login
           method: POST
+  confirm-sign-up:
+    handler: dist/confirmSignUp.confirmSignUp
+    events:
+      - http:
+          path: auth/confirm-signup
+          method: POST
           
