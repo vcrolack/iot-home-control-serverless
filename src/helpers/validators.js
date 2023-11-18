@@ -4,6 +4,31 @@ const isValidDate = (date) => {
   return dateObj.toString() !== 'Invalid Date';
 };
 
+const validateEmail = (email) => {
+
+  const errors = [];
+
+  if (!email) {
+    errors.push('CorreoElectronico is required');    
+  } else if (!email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)) {
+    errors.push('CorreoElectronico must be a valid email');
+  }
+
+  return errors;
+};
+
+const validatePassword = (password) => {
+  const errors = [];
+
+  if (!password){
+    errors.push('Contrasena is required');
+  } else if (!password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)) {
+    errors.push('Contrasena must be a valid password');
+  }
+
+  return errors;
+};
+
 const validateSchema = (data, validProperties) => {
   const errors = [];
   const dataProperties = Object.keys(data);
@@ -15,7 +40,7 @@ const validateSchema = (data, validProperties) => {
   });
 
   return errors; 
-}
+};
 
 
 /* ------ MODULES VALIDATIONS ------- */
@@ -80,7 +105,7 @@ const userValidator = (data) => {
   if (!data.NombreUsuario || data.NombreUsuario.trim().length === 0) {
     errors.push('Name is required');
   } else if (data.NombreUsuario.length < 1) {
-    errors.push('Name must be at least 3 characters');
+    errors.push('Name must be at least 1 characters');
   } else if (typeof(data.NombreUsuario) !== 'string') {
     errors.push('Name must be a string');
   } else if (data.NombreUsuario.length > 40) {
@@ -88,18 +113,12 @@ const userValidator = (data) => {
   }
 
   // CorreoElectronico validations
-  if (!data.CorreoElectronico) {
-    errors.push('CorreoElectronico is required');    
-  } else if (!data.CorreoElectronico.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)) {
-    errors.push('CorreoElectronico must be a valid email');
-  }
+  const errorsEmail = validateEmail(data.CorreoElectronico);
+  if (errorsEmail.length > 0) errors = errors.concat(errorsEmail);
 
   // Contrasena validations
-  if (!data.Contrasena){
-    errors.push('Contrasena is required');
-  } else if (!data.Contrasena.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)) {
-    errors.push('Contrasena must be a valid password');
-  }
+  const errorsPassword = validatePassword(data.Contrasena);
+  if (errorsPassword.length > 0) errors = errors.concat(errorsPassword);
 
   // Ubicacion validations (OPTIONAL)
   if(data.Ubicacion) {
@@ -131,9 +150,24 @@ const userValidator = (data) => {
 
 }
 
+const loginValidator = (data) => {
+  const validProperties = ['CorreoElectronico', 'Contrasena'];
+  let errors = [];
 
+  const schemaErrors =  validateSchema(data, validProperties);
+  if (schemaErrors.length > 0) return schemaErrors;
+
+  const errorsEmail = validateEmail(data.CorreoElectronico);
+  if (errorsEmail.length > 0) errors = errors.concat(errorsEmail);
+
+  const errorsPassword = validatePassword(data.Contrasena);
+  if (errorsPassword.length > 0) errors = errors.concat(errorsPassword);
+
+  return errors;
+}
 
 module.exports = { 
   pantryValidator,
-  userValidator
+  userValidator,
+  loginValidator
 };
