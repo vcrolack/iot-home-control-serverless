@@ -45,9 +45,22 @@ const register = async (event, context) => {
       cognitoUserId
     ]);
 
+    const idAutoincremental = createUser[0].ID;
+
+    await cognito.adminUpdateUserAttributes({
+      UserPoolId: config.cognitoUserPoolId,
+      Username: userBody.CorreoElectronico,
+      UserAttributes: [
+        {
+          Name: 'custom:user_id',
+          Value: String(idAutoincremental)
+        }
+      ]
+    }).promise();
+
     return {
       statusCode: 200,
-      body: JSON.stringify(createUser)
+      body: JSON.stringify({idAutoincremental, cognitoUserId})
     }
   } catch (error) {
       return errorHandler(error);

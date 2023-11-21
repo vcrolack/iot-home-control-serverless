@@ -78,6 +78,7 @@ functions:
       - http:
           path: auth/register
           method: POST
+    role: LambdaCognitoRole 
   login:
     handler: dist/login.login
     events:
@@ -90,4 +91,56 @@ functions:
       - http:
           path: auth/confirm-signup
           method: POST
+  edit-token-before-login:
+    handler: dist/editTokenBeforeLogin.editTokenBeforeLogin
+    role: EditTokenLambdaRole
           
+
+resources:
+  Resources:
+    EditTokenLambdaRole:
+      Type: "AWS::IAM::Role"
+      Properties:
+        AssumeRolePolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+            - Effect: "Allow"
+              Principal:
+                Service:
+                  - "lambda.amazonaws.com"
+                  - "cognito-idp.amazonaws.com"
+              Action:
+                - "sts:AssumeRole"
+        Policies:
+          - PolicyName: "MyLambdaPolicy"
+            PolicyDocument:
+              Version: "2012-10-17"
+              Statement:
+                - Effect: "Allow"
+                  Action:
+                    - "rds-db:connect"
+                    - "secretsmanager:GetSecretValue"
+                  Resource: "*"  # todo: granular permisos
+    LambdaCognitoRole:
+      Type: "AWS::IAM::Role"
+      Properties:
+        AssumeRolePolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+            - Effect: "Allow"
+              Principal:
+                Service:
+                  - "lambda.amazonaws.com"
+              Action:
+                - "sts:AssumeRole"
+        Policies:
+          - PolicyName: "LambdaCognitoPolicy"
+            PolicyDocument:
+              Version: "2012-10-17"
+              Statement:
+                - Effect: "Allow"
+                  Action:
+                    - "cognito-idp:AdminUpdateUserAttributes"
+                    - "rds-db:connect"
+                    - "secretsmanager:GetSecretValue"
+                  Resource: "*"
