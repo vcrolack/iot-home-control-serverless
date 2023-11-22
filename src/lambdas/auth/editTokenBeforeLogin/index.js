@@ -11,20 +11,26 @@ const editTokenBeforeLogin = async (event, context) => {
       [username]
     );
 
-    const id = idAutoincremental[0].ID;
+    console.log(idAutoincremental);
 
-    event.response = {
-      claimsOverrideDetails: {
-        claimsToAddOrOverride: {
-          user_id_autoincremental: id,
+    if ( idAutoincremental && idAutoincremental.length > 0 ) {
+      const id = idAutoincremental[0].ID;
+
+      event.response = {
+        claimsOverrideDetails: {
+          claimsToAddOrOverride: {
+            user_id_autoincremental: String(id),
+          },
         },
-      },
-    };
+      };
+    }
 
     return event;
 
   } catch (error) {
-    return errorHandler(error);
+    console.log(error);
+    throw error;
+    //return errorHandler(error);
   }
 };
 
