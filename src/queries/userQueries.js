@@ -19,10 +19,14 @@ const UPDATE_USER = `
 
 const DELETE_USER = 'DELETE FROM "Usuarios" WHERE "ID" = $1';
 
+
+const GET_PROFILE = 'SELECT * FROM "Usuarios" WHERE "CognitoUserId"=$1';
+
 module.exports = {
   GET_USERS,
   GET_USER_BY_ID,
   CREATE_USER,
   UPDATE_USER,
-  DELETE_USER
+  DELETE_USER,
+  GET_PROFILE
 };

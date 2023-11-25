@@ -94,6 +94,12 @@ functions:
   edit-token-before-login:
     handler: dist/editTokenBeforeLogin.editTokenBeforeLogin
     role: EditTokenLambdaRole
+  get-profile:
+    handler: dist/getProfile.getProfile
+    events:
+      - http:
+          path: users/getProfile/{cognitoUserId}
+          method: GET
           
 
 resources:
