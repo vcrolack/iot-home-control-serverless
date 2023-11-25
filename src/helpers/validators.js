@@ -26,7 +26,7 @@ const validatePassword = (password) => {
     errors.push('Contrasena must be a valid password');
   }
 
-  return errors;
+  return errors;  
 };
 
 const validateSchema = (data, validProperties) => {
