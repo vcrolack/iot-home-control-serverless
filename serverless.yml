@@ -25,6 +25,12 @@ functions:
             parameters:
               paths:
                 id: true
+  get-pantries-by-user:
+    handler: dist/getPantriesByUser.getPantriesByUser
+    events:
+      - http:
+          path: pantries/user/{id}
+          method: GET
   create-pantries:
     handler: dist/createPantries.createPantries
     events:
@@ -126,7 +132,15 @@ resources:
                   Action:
                     - "rds-db:connect"
                     - "secretsmanager:GetSecretValue"
-                  Resource: "*"  # todo: granular permisos
+                  Resource: "*"  # Consider specifying resources more granularly for better security practice
+                - Effect: "Allow"
+                  Action:
+                    - "logs:CreateLogGroup"
+                    - "logs:CreateLogStream"
+                    - "logs:PutLogEvents"
+                  # Replace with the specific log group ARN if needed, otherwise '*' allows all CloudWatch Logs.
+                  Resource: "arn:aws:logs:us-east-2:121687014752:*"
+
     LambdaCognitoRole:
       Type: "AWS::IAM::Role"
       Properties:

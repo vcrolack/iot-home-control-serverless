@@ -11,6 +11,7 @@ module.exports = {
     'deletePantries': './src/lambdas/pantries/deletePantries/index.js',
     'updatePantries': './src/lambdas/pantries/updatePantries/index.js',
     'getPantriesById': './src/lambdas/pantries/getPantriesById/index.js',
+    'getPantriesByUser': './src/lambdas/pantries/getPantriesByUser/index.js',
 
     // USERS
     'getUsers': './src/lambdas/users/getUsers/index.js',
