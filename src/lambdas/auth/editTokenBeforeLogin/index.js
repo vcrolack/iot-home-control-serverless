@@ -4,7 +4,6 @@ const { errorHandler } = require("../../../helpers/errorHandler");
 
 const editTokenBeforeLogin = async (event, context) => {
   const username = event.userName;
-  console.log('Esto es el evento: ' + JSON.stringify(event, null, 2))
 
   try {
     const idAutoincremental = await executeQuery(
@@ -12,14 +11,8 @@ const editTokenBeforeLogin = async (event, context) => {
       [username]
     );
 
-    console.log(idAutoincremental);
-
-    console.log(idAutoincremental);
-
     if ( idAutoincremental && idAutoincremental.length > 0 ) {
       const id = String(idAutoincremental[0].ID);
-
-    console.log(id)
 
       event.response = {
         claimsOverrideDetails: {
@@ -29,8 +22,6 @@ const editTokenBeforeLogin = async (event, context) => {
         },
       };
     }
-
-    console.log(event)
 
     return event;
 

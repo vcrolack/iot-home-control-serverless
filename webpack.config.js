@@ -12,6 +12,7 @@ module.exports = {
     'updatePantries': './src/lambdas/pantries/updatePantries/index.js',
     'getPantriesById': './src/lambdas/pantries/getPantriesById/index.js',
     'getPantriesByUser': './src/lambdas/pantries/getPantriesByUser/index.js',
+    'getPantryByUser': './src/lambdas/pantries/getPantryByUser/index.js',
 
     // USERS
     'getUsers': './src/lambdas/users/getUsers/index.js',

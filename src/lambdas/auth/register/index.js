@@ -40,7 +40,7 @@ const register = async (event, context) => {
       userBody.NombreUsuario,
       userBody.CorreoElectronico,
       userBody.Ubicacion,
-      '123456asdasdas',
+      '123456asdasdas', // todo: delete column on db
       userBody.ConfiguracionNotificacion,
       cognitoUserId
     ]);

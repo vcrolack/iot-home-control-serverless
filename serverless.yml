@@ -31,6 +31,12 @@ functions:
       - http:
           path: pantries/user/{id}
           method: GET
+  get-pantry-by-user:
+    handler: dist/getPantryByUser.getPantryByUser
+    events:
+      - http:
+          path: pantries/{id}/users/{userId}
+          method: GET
   create-pantries:
     handler: dist/createPantries.createPantries
     events:

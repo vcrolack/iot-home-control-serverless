@@ -1,11 +1,11 @@
 const jwt = require("jsonwebtoken");
 const executeQuery = require("../../../db/dbManager");
 const { errorHandler } = require("../../../helpers/errorHandler");
-const { GET_PANTRIES_BY_USER } = require("../../../queries/pantryQueries");
+const { GET_PANTRY_BY_USER } = require("../../../queries/pantryQueries");
 
-const getPantriesByUser = async (event, context) => {
+const getPantryByUser = async (event, context) => {
   try {
-    const { id } = event.pathParameters;
+    const { userId, id: pantryId } = event.pathParameters;
 
     if (!event.headers.Authorization)
       return errorHandler({ statusCode: 400, message: "Bad request" });
@@ -13,17 +13,19 @@ const getPantriesByUser = async (event, context) => {
     const token = event.headers.Authorization.split(" ")[1];
     const decodedToken = jwt.decode(token);
 
-    if (!decodedToken) {
+    if (!decodedToken)  
       return errorHandler({ statusCode: 401, message: "Invalid token" });
-    }
-  
-    if (parseInt(decodedToken.user_id) !== parseInt(id))
+
+    if (parseInt(decodedToken["custom:user_id"]) !== parseInt(userId))
       return errorHandler({ statusCode: 403, message: "Unauthorized" });
 
-    const result = await executeQuery(GET_PANTRIES_BY_USER, [id]);
+    const result = await executeQuery(GET_PANTRY_BY_USER, [userId, pantryId]);
 
     if (result.length === 0)
-      return errorHandler({ statusCode: 404, message: "Pantries not found" });
+      return errorHandler({ statusCode: 404, message: "Pantry not found" });
+
+    if (result[0].PropietarioID !== parseInt(decodedToken["custom:user_id"]))
+      return errorHandler({ statusCode: 403, message: "Unauthorized" });
 
     return {
       statusCode: 200,
@@ -34,4 +36,6 @@ const getPantriesByUser = async (event, context) => {
   }
 };
 
-module.exports = { getPantriesByUser };
+module.exports = {
+  getPantryByUser,
+};

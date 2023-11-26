@@ -7,7 +7,6 @@ const secretsManager = new AWS.SecretsManager();
 let cachedPool = null;
 
 const getSecret = async (secretName) => {
-  console.log('This is a secret!!! -> ' + secretName);
   const data = await secretsManager.getSecretValue({ SecretId: secretName }).promise();
 
   return JSON.parse(data.SecretString);
@@ -17,8 +16,6 @@ const createPool = async () => {
   if (cachedPool) return cachedPool;
 
   const secret = await getSecret(config.dbSecretKey);
-
-  console.log(secret)
   
   cachedPool = new Pool({
     user: secret.username,

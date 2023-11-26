@@ -2,6 +2,8 @@ const GET_PANTRIES = `SELECT * FROM "Despensa"`;
 
 const GET_PANTRIES_BY_USER = `SELECT * FROM "Despensa" WHERE "PropietarioID" = $1`;
 
+const GET_PANTRY_BY_USER = `SELECT * FROM "Despensa" WHERE "PropietarioID" = $1 AND "ID" = $2`; 
+
 const GET_PANTRY_BY_ID = 'SELECT * FROM "Despensa" WHERE "ID" = $1';
 
 const CREATE_PANTRY = `INSERT INTO "Despensa" ("NombreItem", "FechaCompra", "FechaCaducidad", "CantidadDisponible", "UnidadesMedida", "PropietarioID" ) 
@@ -21,6 +23,7 @@ const DELETE_PANTRY = `DELETE FROM "Despensa" WHERE "ID" = $1`;
 module.exports = {
   GET_PANTRIES,
   GET_PANTRIES_BY_USER,
+  GET_PANTRY_BY_USER,
   GET_PANTRY_BY_ID,
   CREATE_PANTRY,
   UPDATE_PANTRY,
