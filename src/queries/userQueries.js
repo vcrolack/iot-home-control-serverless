@@ -2,6 +2,8 @@ const GET_USERS = `SELECT * FROM "Usuarios"`;
 
 const GET_USER_BY_ID = `SELECT * FROM "Usuarios" WHERE "ID" = $1`;
 
+const GET_USER_BY_EMAIL = `SELECT * FROM "Usuarios" WHERE "CorreoElectronico"=$1`;
+
 const CREATE_USER = `
   INSERT INTO "Usuarios" ("NombreUsuario", "CorreoElectronico", "Ubicacion", "Contrasena", "ConfiguracionNotificacion", "CognitoUserId") 
   VALUES ($1, $2, $3, $4, $5, $6)
@@ -25,6 +27,7 @@ const GET_PROFILE = 'SELECT * FROM "Usuarios" WHERE "CognitoUserId"=$1';
 module.exports = {
   GET_USERS,
   GET_USER_BY_ID,
+  GET_USER_BY_EMAIL,
   CREATE_USER,
   UPDATE_USER,
   DELETE_USER,
