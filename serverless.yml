@@ -112,6 +112,12 @@ functions:
       - http:
           path: users/getProfile/{cognitoUserId}
           method: GET
+  check-status:
+    handler: dist/checkStatus.checkStatus
+    events:
+      - http:
+          path: auth/check-status
+          method: GET
           
 
 resources:

@@ -26,6 +26,7 @@ module.exports = {
     'login': './src/lambdas/auth/login/index.js',
     'confirmSignUp': './src/lambdas/auth/confirmSignUp/index.js',
     'editTokenBeforeLogin': './src/lambdas/auth/editTokenBeforeLogin/index.js',
+    'checkStatus': './src/lambdas/auth/checkStatus/index.js',
     
   },
   output: {
