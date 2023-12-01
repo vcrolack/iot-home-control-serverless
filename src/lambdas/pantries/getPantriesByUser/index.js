@@ -16,8 +16,12 @@ const getPantriesByUser = async (event, context) => {
     if (!decodedToken) {
       return errorHandler({ statusCode: 401, message: "Invalid token" });
     }
-  
-    if (parseInt(decodedToken.user_id) !== parseInt(id))
+
+    console.log('token decoded-> ' + JSON.stringify(decodedToken));
+    console.log('id del token -> ' + decodedToken.user_id);
+    console.log('id del path -> ' + id);
+
+    if (parseInt(decodedToken['custom:user_id']) !== parseInt(id))
       return errorHandler({ statusCode: 403, message: "Unauthorized" });
 
     const result = await executeQuery(GET_PANTRIES_BY_USER, [id]);
